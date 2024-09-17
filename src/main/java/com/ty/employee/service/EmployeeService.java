@@ -1,12 +1,12 @@
 package com.ty.employee.service;
 
 import com.ty.employee.entities.Employee;
+import com.ty.employee.exception.EmployeeNotFoundException;
 import com.ty.employee.repository.EmployeeRepository;
 import com.ty.employee.request.EmployeeRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -29,7 +29,8 @@ public class EmployeeService {
     }
 
     public Employee findEmployee(String empId) {
-        Employee employee = employeeRepository.findById(empId).orElseThrow(RuntimeException::new);
-        return employee;
+        return  employeeRepository
+                .findById(empId)
+                .orElseThrow(()-> new EmployeeNotFoundException("Employee Not Found"));
     }
 }

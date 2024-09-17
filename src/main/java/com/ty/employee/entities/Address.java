@@ -12,6 +12,7 @@ public class Address {
 
     private String addrId;
     private String buildingName;
+    private String empId;
     private int buildingNumber;
     private String city;
     private int pincode;

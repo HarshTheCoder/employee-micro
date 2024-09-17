@@ -26,10 +26,10 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/find")
-    public ResponseEntity<Employee> findEmployee(@RequestParam String empId){
+    public ResponseEntity<Employee> findEmployee(@RequestParam String empId) {
         Employee employee = employeeService.findEmployee(empId);
         Address address = iFeignClient.findAddress(empId);
-        employee.getListOfAddress().add(address);
+        employee.setAddress(address);
        return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(employee);
